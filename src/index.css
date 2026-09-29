@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  font-family: "Inter", sans-serif;
+  background: #f3f0ed;
+  color: #2b2623;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #d9c3b8; }
