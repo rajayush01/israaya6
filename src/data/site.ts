@@ -1,5 +1,5 @@
-const BASE = "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israyaa";
-export const img = (n: number) => `${BASE}/IMG_${n}.JPEG`;
+const BASE = "https://pub-5910ba650a5b4f4ba76486d5a3630c49.r2.dev/Israyaawebp";
+export const img = (n: number) => `${BASE}/IMG_${n}.webp`;
 
 // Swap any number below (7963–7999, 8001–8007) to re-map a slot.
 export const IMAGES = {
