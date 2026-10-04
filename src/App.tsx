@@ -7,6 +7,8 @@ import Navbar from "@/components/Navbar";
 import { BagDrawer, SearchOverlay } from "@/components/Overlays";
 import { AccountPage, CollectionsPage, PhilosophyPage, ShopPage } from "@/components/Pages";
 import { Categories, CloserLook, Craft, Hero, Promises, SummerEdit } from "@/components/Sections";
+import logo from "./assets/ISRAAYA LOGO.svg";
+import logo1 from "./assets/ISRAAYA MOTIF.svg";
 
 function Home() {
   return (
@@ -45,9 +47,10 @@ export default function App() {
     <>
       <AnimatePresence>
         {loading && (
-          <motion.div key="loader" className="fixed inset-0 z-[100] flex items-center justify-center bg-[#f3f0ed]" exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}>
-            <motion.span className="text-[11px] uppercase tracking-[0.5em] text-[#2b2623]" initial={{ opacity: 0, letterSpacing: "0.9em" }} animate={{ opacity: 1, letterSpacing: "0.5em" }} transition={{ duration: 1.2 }}>
-              Israaya
+          <motion.div key="loader" className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#f3f0ed]" exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}>
+            <motion.span className="flex flex-col justify-center items-center tracking-[0.5em] text-[#2b2623]" initial={{ opacity: 0, letterSpacing: "0.9em" }} animate={{ opacity: 1, letterSpacing: "0.5em" }} transition={{ duration: 1.2 }}>
+              <img src={logo1} alt="Israaya Motif" className="h-20"/>
+              <img src={logo} alt="Israaya" className="h-20"/>
             </motion.span>
           </motion.div>
         )}
