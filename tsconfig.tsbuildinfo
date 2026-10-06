@@ -1,17 +1,1 @@
-{
-  "root": [
-    "./src/app.tsx",
-    "./src/main.tsx",
-    "./src/vite-env.d.ts",
-    "./src/components/footer.tsx",
-    "./src/components/motion.tsx",
-    "./src/components/navbar.tsx",
-    "./src/components/overlays.tsx",
-    "./src/components/pages.tsx",
-    "./src/components/sections.tsx",
-    "./src/data/site.ts",
-    "./vite.config.ts"
-  ],
-  "errors": true,
-  "version": "5.6.3"
-}
+{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/Footer.tsx","./src/components/Motion.tsx","./src/components/Navbar.tsx","./src/components/Overlays.tsx","./src/components/Pages.tsx","./src/components/Sections.tsx","./src/data/site.ts","./src/hooks/useSmoothScroll.ts","./src/lib/img.ts","./src/lib/preload.ts","./vite.config.ts"],"version":"5.6.3"}

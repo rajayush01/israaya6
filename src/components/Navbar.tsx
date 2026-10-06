@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Search, User, ShoppingBag } from "lucide-react";
@@ -46,13 +46,13 @@ export default function Navbar({
 
   return (
     <>
-      <motion.header
+      <m.header
   initial={{ y: -30, opacity: 0 }}
   animate={{ y: 0, opacity: 1 }}
   transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-  className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
+  className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color] duration-500 ${
     solid
-      ? "bg-[#f3f0ed]/85 backdrop-blur-md text-[#2b2623]"
+      ? "bg-[#f3f0ed]/95 text-[#2b2623]"
       : "py-5 md:py-3 text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]"
   }`}
 >
@@ -155,18 +155,18 @@ export default function Navbar({
             </li>
           </ul>
         </nav>
-      </motion.header>
+      </m.header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {menu && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-[60] flex flex-col bg-[#f3f0ed] px-8 py-8"
-            initial={{ clipPath: "inset(0 0 100% 0)" }}
-            animate={{ clipPath: "inset(0 0 0% 0)" }}
-            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
             transition={{
-              duration: 0.9,
+              duration: 0.8,
               ease: [0.76, 0, 0.24, 1],
             }}
           >
@@ -183,7 +183,7 @@ export default function Navbar({
                 { label: "Our Philosophy", to: "/philosophy" },
                 { label: "Account", to: "/account" },
               ].map((l, i) => (
-                <motion.li
+                <m.li
                   key={l.to}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -201,10 +201,10 @@ export default function Navbar({
                   >
                     {l.label}
                   </Link>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

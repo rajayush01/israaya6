@@ -1,6 +1,7 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { imgProps, type Tier } from "@/lib/img";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -17,51 +18,52 @@ export function Reveal({
   className?: string;
 }) {
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 1.1, delay, ease }}
+      viewport={{ once: true, margin: "0px 0px 12% 0px" }}
+      transition={{ duration: 0.8, delay, ease }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
-/** Image with clip-path curtain reveal + slow hover zoom */
+/** Image with a fade-rise reveal + gentle settle zoom (transform/opacity only — no clip-path repaints) */
 export function RevealImage({
   src,
   alt,
   className = "",
   delay = 0,
   zoom = true,
+  tier = "card",
 }: {
   src: string;
   alt: string;
   className?: string;
   delay?: number;
   zoom?: boolean;
+  tier?: Tier;
 }) {
   return (
-    <motion.div
+    <m.div
       className={`overflow-hidden ${className}`}
-      initial={{ clipPath: "inset(0 0 100% 0)" }}
-      whileInView={{ clipPath: "inset(0 0 0% 0)" }}
-      viewport={{ once: true, margin: "-8% 0px" }}
-      transition={{ duration: 1.3, delay, ease }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px 12% 0px" }}
+      transition={{ duration: 0.9, delay, ease }}
     >
-      <motion.img
-        src={src}
+      <m.img
+        {...imgProps(src, tier)}
         alt={alt}
-        loading="lazy"
         className={`h-full w-full object-cover ${zoom ? "transition-transform duration-[1600ms] ease-out group-hover:scale-105" : ""}`}
-        initial={{ scale: 1.2 }}
+        initial={{ scale: 1.06 }}
         whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.8, delay, ease }}
+        viewport={{ once: true, margin: "0px 0px 12% 0px" }}
+        transition={{ duration: 1.3, delay, ease }}
       />
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -80,7 +82,7 @@ export function Parallax({
   const y = useTransform(scrollYProgress, [0, 1], [offset, -offset]);
   return (
     <div ref={ref} className={className}>
-      <motion.div style={{ y }}>{children}</motion.div>
+      <m.div style={{ y, willChange: "transform" }}>{children}</m.div>
     </div>
   );
 }

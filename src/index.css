@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 body {
   font-family: "Inter", sans-serif;
   background: #f3f0ed;
@@ -12,3 +12,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection { background: #d9c3b8; }
+
+/* "A Closer Look" marquee: compositor-driven, pauses on hover */
+@keyframes closer-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.closer-track { animation: closer-scroll 60s linear infinite; will-change: transform; backface-visibility: hidden; }
+.closer-track:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .closer-track { animation: none; } }

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLink, Reveal, RevealImage } from "./Motion";
 import { COLLECTIONS, IMAGES, PAGES, img } from "@/data/site";
@@ -9,15 +9,15 @@ const ease = [0.22, 1, 0.36, 1] as const;
 function PageHeader({ eyebrow, title, blurb }: { eyebrow: string; title: string; blurb: string }) {
   return (
     <header className="px-6 pb-14 pt-40 text-center">
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 1 }} className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#7a6f67]">
+      <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 1 }} className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#7a6f67]">
         {eyebrow}
-      </motion.p>
+      </m.p>
       <h1 style={serif} className="mt-4 overflow-hidden text-[clamp(2.8rem,6vw,5rem)] leading-none">
-        <motion.span className="block" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 1.3, delay: 0.5, ease }}>{title}</motion.span>
+        <m.span className="block" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 1.3, delay: 0.5, ease }}>{title}</m.span>
       </h1>
-      <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 1 }} className="mx-auto mt-6 max-w-[380px] text-[13px] leading-relaxed text-[#4a413b]">
+      <m.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 1 }} className="mx-auto mt-6 max-w-[380px] text-[13px] leading-relaxed text-[#4a413b]">
         {blurb}
-      </motion.p>
+      </m.p>
     </header>
   );
 }
@@ -55,7 +55,7 @@ export function CollectionsPage() {
       {COLLECTIONS.map((c, i) => (
         <div key={c.name} className={`grid items-center md:grid-cols-2 ${i % 2 ? "bg-[#e9e4e0]" : ""}`}>
           <div className={i % 2 ? "md:order-2" : ""}>
-            <RevealImage src={c.src} alt={c.name} className="aspect-[4/5] md:aspect-[1/1]" />
+            <RevealImage src={c.src} tier="half" alt={c.name} className="aspect-[4/5] md:aspect-[1/1]" />
           </div>
           <div className="px-8 py-16 text-center">
             <Reveal><h2 style={serif} className="text-[clamp(2rem,3.6vw,3.4rem)]">{c.name}</h2></Reveal>
@@ -79,8 +79,8 @@ export function PhilosophyPage() {
     <section className="bg-[#f3f0ed]">
       <PageHeader eyebrow="Our Philosophy" title="Rooted in Craft, Made for Today" blurb="We celebrate craftsmanship, natural fabrics and thoughtful details. Pieces that are subtle, elegant and forever relevant." />
       <div className="mx-auto grid max-w-[1200px] gap-4 px-4 md:grid-cols-2">
-        <RevealImage src={IMAGES.craft} alt="Craft detail" className="aspect-[4/5]" />
-        <RevealImage src={img(7963)} alt="Israaya" delay={0.15} className="aspect-[4/5] md:mt-24" />
+        <RevealImage src={IMAGES.craft} tier="half" alt="Craft detail" className="aspect-[4/5]" />
+        <RevealImage src={img(7963)} tier="half" alt="Israaya" delay={0.15} className="aspect-[4/5] md:mt-24" />
       </div>
       <div className="mx-auto grid max-w-[1100px] gap-10 px-6 py-24 text-center md:grid-cols-3">
         {values.map(([t, d], i) => (

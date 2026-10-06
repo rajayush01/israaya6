@@ -1,9 +1,10 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Leaf, HandHeart, Package, RotateCcw } from "lucide-react";
 import { ArrowLink, Parallax, Reveal, RevealImage } from "./Motion";
 import { CATEGORIES, CLOSER_LOOK, IMAGES, PROMISES } from "@/data/site";
+import { imgProps } from "@/lib/img";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const serif = { fontFamily: "'Cormorant Garamond', serif" };
@@ -18,19 +19,19 @@ export function Hero() {
 
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-[#cfc7bd]">
-      <motion.div style={{ y: imgY }} className="absolute inset-0 -top-[6%] h-[112%]">
-        <motion.img
-          src={IMAGES.hero}
+      <m.div style={{ y: imgY, willChange: "transform" }} className="absolute inset-0 -top-[6%] h-[112%]">
+        <m.img
+          {...imgProps(IMAGES.hero, "hero", true)}
           alt="Timeless by Design"
           className="h-full w-full object-cover object-[65%_center]"
-          initial={{ scale: 1.25, opacity: 0 }}
+          initial={{ scale: 1.06, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.4, ease }}
+          transition={{ duration: 1.6, ease }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#d9d1c7]/60 via-transparent to-transparent" />
-      </motion.div>
+      </m.div>
 
-      <motion.div
+      <m.div
         style={{ y: textY, opacity: fade }}
         className="relative z-10 flex h-full items-center px-6 md:px-[4%]"
       >
@@ -38,18 +39,18 @@ export function Hero() {
           <h1 style={serif} className="overflow-hidden text-[clamp(3rem,6.4vw,5.6rem)] font-normal leading-[1.02]">
             {["Timeless", "by Design"].map((line, i) => (
               <span key={line} className="block overflow-hidden pb-1">
-                <motion.span
+                <m.span
                   className="block"
                   initial={{ y: "110%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 1.4, delay: 0.5 + i * 0.15, ease }}
                 >
                   {line}
-                </motion.span>
+                </m.span>
               </span>
             ))}
           </h1>
-          <motion.p
+          <m.p
             className="mt-6 text-[13px] leading-relaxed text-[#4a413b]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,17 +59,17 @@ export function Hero() {
             Thoughtfully crafted silhouettes.
             <br />
             Made to be lived in.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             className="mt-9"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1.3, ease }}
           >
             <ArrowLink to="/new-in">Explore New In</ArrowLink>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }
@@ -109,6 +110,7 @@ export function Craft() {
   >
     <RevealImage
       src={IMAGES.craft}
+      tier="half"
       alt="Craftsmanship detail"
       className="h-full w-full"
     />
@@ -208,23 +210,18 @@ export function CloserLook() {
           A Closer Look
         </h2>
       </Reveal>
-      <motion.div
-        className="flex w-max gap-3 px-3"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-        whileHover={{ transition: { duration: 140 } }}
-      >
+      {/* pure-CSS marquee: runs on the compositor, pauses on hover */}
+      <div className="closer-track flex w-max gap-3 px-3">
         {row.map((src, i) => (
           <div key={i} className="group aspect-[3/4] w-[46vw] overflow-hidden sm:w-[24vw] lg:w-[16.2vw]">
             <img
-              src={src}
+              {...imgProps(src, "thumb")}
               alt="A closer look"
-              loading="lazy"
               className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-110"
             />
           </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }
